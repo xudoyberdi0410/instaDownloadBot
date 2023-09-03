@@ -1,16 +1,15 @@
 import asyncio
 import logging
 import sys
-import os
 import shutil
 
 from aiogram import Bot, Dispatcher, Router, types, F
 from aiogram.enums import ParseMode
 from aiogram.filters import CommandStart
-from aiogram.types import Message, FSInputFile, BufferedInputFile
-from aiogram.utils.markdown import hbold
+from aiogram.types import Message, FSInputFile
 
 import insta
+from background import keep_alive
 
 
 TOKEN = "6479752461:AAEMkrzGKCgqyHxkNHPDDOhjy1YEc4ZIBrg"
@@ -61,6 +60,7 @@ async def any_command(message: Message) -> None:
 async def main() -> None:
     bot = Bot(TOKEN)
     dp.include_router(router=router)
+    keep_alive()
     await dp.start_polling(bot)
 
 
